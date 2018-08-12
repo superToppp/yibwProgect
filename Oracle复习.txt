@@ -1,0 +1,33 @@
+oracle 复习
+1.建表 create table 表名();
+唯一约束 ALTER TABLE 表名 ADD(CONSTRAINT 键名 UNIQUE(表字段));
+主键约束 ALTER TABLE 表名 ADD(CONSTRAINT 键名 PRIMARY KEY(表字段));
+外键约束 ALTER TABLE 表名 ADD(CONSTRAINT 键名 FOREIGN KEY(表字段) REFERENCES 表2名(表2字段));
+索引 CREATE INDEX 索引名 ON 表名(表字段);
+序列 CREATE SEQUENCE 序列名 START WITH 1 INCREMENT BY 1 NOMAXVALUE NOCYCLE;
+
+2.修改表属性 
+添加属性列 ALTER TABLE 表名 ADD();
+删除表属性 ALTER TABLE 表名 DROP COLUMN 表字段;
+修改字段属性 ALTER TABLE 表名 MODIFY(表字段 类型);
+修改字段名称 ALTER TABLE 表名 RENAME 原字段名称 TO 新字段名称;
+更新表数据 UPDATE TABLE 表名 SET 字段名 = 新值 WHERE 条件；
+
+3.查询
+基本命令 SELECT ... FROM ... WHERE ... AND ... IN(...) GROUP BY ... HAVING ORDER BY ...;
+多表查询 SELECT ... FROM B1, B2 WHERE B1.** = B2.**;
+左外连接 SELECT ... FROM B1 LEFT JION B2 ON B1.** = B2.**;
+右外连接 SELECT ... FROM B1 RIGHT JION B2 ON B1.** = B2.**;
+全外连接 SELECT ... FROM B1 FULL JION B2 ON B1.** = B2.**;
+内连接 SELECT ... FROM B1 INNER JION B2 ON B1.** = B2.**;
+
+求和 COUNT()函数
+求平均 AVG()函数
+四舍五入 ROUND()函数
+转换成字符 TO_CHAR()函数
+转换成数字 TO_NUBER()函数
+转换成时间 TO_DATE()函数
+求最大 MAX()函数
+求最小 MIN()函数
+NAL(*,*)函数 两个参数，第一个为空则设置成第二个值
+

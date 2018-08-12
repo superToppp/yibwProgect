@@ -1,0 +1,117 @@
+Java 1-2年工作经验面试大纲
+1.常用jar包的了解
+java.lang基础包  String Math Integer
+java.util工具包  Collection Map Date
+java.sql数据库相关包  Connection
+java.io输入输出流包  InputStream OutputStream
+等
+
+2.JDK JRE JVM 的区别（稍微了解了解就好）
+JDK Java开发的工具箱，包含jre，还包含编译Java文件成为class文件的javac（编译器），还包含Java的原生api。
+JRE 是Java运行的环境。
+JVM 虚拟机，Java运行的依赖虚拟机，因为又虚拟机才能跨平台。
+
+3.Java的基本数据类型（重点）
+byte 占1个字节，不能存储汉字
+short 占2个字节，数字类型 整数型
+int 占4个字节，数字类型 整数型
+long 占8个字节，数字类型 整数型
+float 占4个字节，数字类型 浮点型，声明变量后，赋的值结尾要加f
+double 占8个字节，数字类型 浮点型
+char 占2个字节，可以存储汉字
+boolean 比较复杂（在正常的声明单个boolean变量时候，占4个字节；new成变量数组的时候，每个变量占1个字节） 这个了解就好
+以上小类型都不能存null，否则报错空指针异常
+
+4.int和Integer区别
+ 4.1 定义上来讲
+ int是基本的数据类型（原始类型），直接赋值直接存（float、double、char、byte这种首字母小写的小类型都是这种规则）；
+ Integer是一个对象，是一个引用指向这个对象（Float、Double、String这种首字母大写的大类型都是这种规则）；所以2个new Integer 不会相等
+ 4.2 初始化
+ int i = 1；
+ Integer i = new Integer(1);
+ 4.3 关系
+ int是基本数据类型（原始类型），Integer是一个类，是int的扩展，的封装类，Integer定义了很多转换方法
+ int Integer不能互用
+ 
+5.String StringBuffer StringBuilder的区别
+ 5.1 运行速度
+ StringBuilder > StringBuffer > String
+ 原因：String是一个字符串常量（在JVM处理下是不可改变的;
+ 例子：String str = "str";
+ str = str+"ed";
+ 输出："stred"
+ 实际程序看到的是假象，是JVM创建了一个新对象，对象名跟旧对象一样叫str，然后把"ed"和旧的值"str"加起来"stred"给新对象，旧的对象被JVM的垃圾回收机制给回收掉了；）
+ 而StringBuffer StringBuilder是变量，JVM对于它们不创建和回收，直接在对象上面添加；所以String是最慢的
+ 5.2 安全
+ StringBuilder是线程不安全的，而StringBuffer是线程安全的
+ 5.3 总结
+ String：适用于少量的字符串操作的情况
+ StringBuilder：适用于单线程下在字符缓冲区进行大量操作的情况
+ StringBuffer：适用多线程下在字符缓冲区进行大量操作的情况
+ 
+6.java面向对象的三大特性
+ 封装
+  什么是封装，顾名思义，把一个类中方法具体实现，对象的属性，只提供对外的公共访问方式。
+ 继承
+  将类中相同的对象，方法，属性，等抽取到一个新类中，其他类无需再定义这些，只需要继承这个类就好。
+ 多态
+  允许不同类的对象对同一消息作出相应。
+
+7.静态变量，成员变量，局部变量
+ 7.1 静态变量
+  属于类，位于类里面，方法的外面，在内存的静态区域，生命周期跟随类，默认初始值，通过类名调用。
+ 7.2 成员变量
+  属于对象，位于类中，方法外面，在内存的堆空间，生命周期跟随类，默认初始值，通过类名调用。
+ 7.3 局部变量
+  属于方法，位于类中方法里面，在内存的栈空间，生命周期跟随方法，无法初始值，通过方法使用。
+ 
+8.Collection,Collections,List,Set的区别
+ List Set 都继承Collection，Collection是集合的最顶端的接口；2️而collections是集合的工具类。
+ List为有序集合接口，ArrayList，LinkedList，Vector为其实现类。Set为无序不重复集合接口，HashSet，LinkedSet，TreeSet为其实现类。
+
+9.ArrayList LinkedList Vector 的区别
+ ArrayList Vector底层为数组，查询快，增删慢。ArrayList内部为Object[]，效率高（因为不需要线程的同步），线程不安全；
+ Vector效率低（因为线程是同步的），但线程安全；ArrayList Vector在元素都超容量初始大小的时候，Vector是翻倍增长容量，而ArrayList是按50%来增长，所以说ArrayList更有利于节省内存空间。
+ LinkedList底层为链表结构，查询慢，增删快。线程不安全。
+ 
+10.HashMap, HashTable 
+ HashMap线程不安全，但是效率高，允许键或者值为空。
+ HashTable线程安全，效率低，不允许建或者值为空。
+
+11.数组和集合的区别
+ 数组可以存基本数据类型，对象，长度固定。
+ 集合只能存对象，长度可变。
+ 
+12.常见的数据结构
+ 栈，链表，队列，数组，树
+ 
+13.Map和Collection的区别
+ Map是双列，Collection是单列
+ Map的键值唯一，Collection的子接口Set是唯一的
+ Map的数据只针对键有效，Collection针对元素有效。
+ 
+Overload 和 Override 的区别
+ Override重写与Overload重载都是多态的体现。重写是父类与子类之间的多态性的一种表现形式，重载是一个类中多态性的一种表现形式。
+ 重写时参数，返回值，方法名必须相同；重载时方法名相同，返回值可以不同，参数必须不同。
+ 
+14.异常处理
+ 稍微网上看看就好，知道 try-catch、throws 等异常处理的方式。
+ 
+15.final、finally、finalize 的区别
+ final 修饰变量为常量，修饰方法不能被重写，修饰类不能被继承。
+ finally try-catch-finally 语句代码，一定执行。
+ finalize 垃圾回收器方法。
+ 
+16.抽象类与 interface 的区别
+ 抽象类中可以有抽象方法，也可以没有，而interface中必须都为抽象方法。
+ 抽象类只能被单继承，而interface可以多实现。
+ 抽象类中extend实现抽象类，implement实现接口。
+ 抽象类有构造方法，接口没有。
+ 抽类中可以有main方法，interface中没有。
+ 
+17.多线程有几种实现方法,都是什么?同步有几种实现方法,都是什么?
+  多线程有两种实现方法，分别是继承Thread类与实现Runnable接口 。
+同步的实现方面有两种，分别是synchronized,wait与notify。
+
+18.描述一下JVM加载class文件的原理机制?
+　JVM中类的装载是由ClassLoader和它的子类来实现的,Java ClassLoader 是一个重要的Java运行时系统组件。它负责在运行时查找和装入类文件的类。
